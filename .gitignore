@@ -1,3 +1,6 @@
 .idea
 .swp
 vendor/
+
+.phpunit.result.cache
+composer.lock
