@@ -6,7 +6,6 @@ use Dcg\Client\MembershipNumberState\Utils\API;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Stream\Stream;
 use PHPUnit\Framework\TestCase;
 use Dcg\Client\MembershipNumberState\Config;
 
@@ -16,7 +15,7 @@ class ClientTest extends TestCase
     protected $testConfig = null;
 
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -27,7 +26,7 @@ class ClientTest extends TestCase
     public function testClientActivateCallSingleIsOk()
     {
         $mock = new MockHandler([
-            new Response(200, [], Stream::factory(json_encode(['OK'])))
+            new Response(200, [], json_encode(['OK']))
         ]);
         $handler = HandlerStack::create($mock);
 
@@ -43,7 +42,7 @@ class ClientTest extends TestCase
     public function testClientActivateCallManyIsOk()
     {
         $mock = new MockHandler([
-            new Response(200, [], Stream::factory(json_encode(['OK'])))
+            new Response(200, [], json_encode(['OK']))
         ]);
         $handler = HandlerStack::create($mock);
 
@@ -62,7 +61,7 @@ class ClientTest extends TestCase
     public function testClientActivateCallIsNotOk()
     {
         $mock = new MockHandler([
-            new Response(404, [], Stream::factory(json_encode(['Error'])))
+            new Response(404, [], json_encode(['Error']))
         ]);
         $handler = HandlerStack::create($mock);
 
